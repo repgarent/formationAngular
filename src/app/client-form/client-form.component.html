@@ -1,0 +1,18 @@
+
+<h2>Nouveau client</h2>
+<form #clientForm="ngForm">
+    <mat-form-field>
+        <input matInput placeholder="Id du client" name="id" required [(ngModel)]="client.id" />
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Nom du client" name="nom" required [(ngModel)]="client.nom" />
+        <mat-error [hidden]="">Le nom est obligatoire.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Prénom du client" name="prenom" pattern="[a-zA-Z]{3,}"
+            [(ngModel)]="client.prenom" />
+        <mat-error [hidden]="">Le prénom doit contenir 3 lettres au minimum.</mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit" (click)="addNewClients()" [disabled]="clientForm.invalid">Enregistrer</button>
+</form>
+<pre>{{client}}</pre>

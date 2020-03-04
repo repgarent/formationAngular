@@ -1,0 +1,12 @@
+<mat-icon matBadge="{{clients.length}}" matBadgeColor="warn">perm_identity</mat-icon>
+<mat-nav-list>
+    <a mat-list-item *ngFor="let client of clients" [routerLink]="['/fiche-client', client.id]"
+        routerLinkActive="router-link-active">
+        {{client.nom|uppercase}} {{client.prenom}}
+        <span selected *ngIf="client.comptes?.length">
+            <mat-icon matBadge="{{client.comptes.length}}" matBadgePosition="after" matBadgeColor="accent">
+                credit_card</mat-icon>
+        </span>
+    </a>
+</mat-nav-list>
+<button mat-flat-button color="primary">Action</button>

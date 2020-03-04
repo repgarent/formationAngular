@@ -1,0 +1,37 @@
+<h2>Nouveau client<small>reactive</small></h2>
+<form [formGroup]="clientForm">
+    <mat-form-field>
+        <input matInput placeholder="Nom du client" formControlName="nom" required />
+        <mat-error [hidden]="">Le nom est obligatoire.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Prénom du client" formControlName="prenom" pattern="[a-zA-Z]{3,}" required />
+        <mat-error>Le prénom doit contenir 3 lettres au minimum.</mat-error>
+    </mat-form-field>
+
+    <div formArrayName="comptes">
+        <div [formGroupName]="i" *ngFor="let cpt of comptesFormArray.controls; let i = index">
+            <mat-form-field>
+                <input matInput placeholder="Numéro du compte" formControlName="numero" pattern="[0-9]{4}" required />
+                <mat-error>Le numéro de compte doit contenir 4 chiffres.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Intitulé" formControlName="intitule" required />
+                <mat-error [hidden]="">Le nom est obligatoire.</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <p>
+        <mat-button-toggle-group>
+            <mat-button-toggle type="button" color="primary" (click)="addAccount()">
+                <mat-icon>add</mat-icon>comptes
+            </mat-button-toggle>
+            <mat-button-toggle type="submit" color="accent" (click)="addNewClients()"
+                [disabled]="clientForm.invalid">
+                <mat-icon>save</mat-icon>Enregistrer
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </p>
+
+</form>
+<pre>{{clientForm.value|json}}</pre>
